@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using OfficeLab.EFCoreDbContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("OfficeLabConnectionString");
+builder.Services.AddDbContext<OfficeLabDbContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 
