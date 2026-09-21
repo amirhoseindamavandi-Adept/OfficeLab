@@ -1,0 +1,57 @@
+﻿@using OfficeLab.Models
+@model OfficeLab.ViewModels.CreateOrEditEmployeeViewModel
+
+<form id="EmployeeForm" asp-action="SubmitEmployeeModal" asp-controller="Employee" data-ajax="true" data-ajax-begin="StartLoading()" data-ajax-success="EmployeeFormSubmited">
+    <div class="modal-header">
+        <h5 class="modal-title">@((Model.EmployeeId == 0) ? "اضافه کردن کارمند" : $"ویرایش آقا/خانم  {Model.EmployeeName}")</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+
+            <input type="hidden" asp-for="EmployeeId" />
+
+            <div class="col-md-6 mb-3">
+                <label>نام کارمند </label>
+                <input type="text" class="form-control" asp-for="EmployeeName">
+                <span class="text-danger" asp-validation-for="EmployeeName"></span>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <label>نام خانوادگی کارمند </label>
+                <input type="text" class="form-control" asp-for="EmployeeFamily">
+                <span class="text-danger" asp-validation-for="EmployeeFamily"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>کد ملی </label>
+                <input type="text" class="form-control" asp-for="NationalCode">
+                <span class="text-danger" asp-validation-for="NationalCode"></span>
+            </div>
+
+          @*   <div class="col-md-6 mb-3">
+                <label>Type</label>
+                <select asp-for="Type" class="form-control" asp-items="@Html.GetEnumSelectList(typeof(ProductType))"></select>
+            </div>
+ *@
+            <div class="col-md-6 mb-3">
+                <label>شماره تلفن </label>
+                <input type="text" class="form-control" asp-for="PhoneNumber">
+                <span class="text-danger" asp-validation-for="NationalCode"></span>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <label asp-for="EmployeeBirthday" class="form-label">تاریخ تولد</label>
+                <input type="date" class="form-control" asp-for="EmployeeBirthday">
+                <span class="text-danger" asp-validation-for="EmployeeBirthday"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">خروج</button>
+        <button type="submit" class="btn btn-success">@((Model.EmployeeId== 0) ? "اضافه کردن " : "ویرایش ")</button>
+    </div>
+</form>

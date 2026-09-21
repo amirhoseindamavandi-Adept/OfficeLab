@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OfficeLab.EFCoreDbContext;
+using OfficeLab.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("OfficeLabConnectionString");
 builder.Services.AddDbContext<OfficeLabDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddScoped<EmployeeServices>();
 
 var app = builder.Build();
 

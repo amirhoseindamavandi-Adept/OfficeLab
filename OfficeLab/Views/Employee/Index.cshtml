@@ -1,0 +1,67 @@
+﻿@model List<OfficeLab.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee Page";
+}
+
+<div class="row">
+    <div class="col-md-12 table-responsive" id="EmployeeDiv">
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+            <h4>لیستی از کارمندان</h4>
+            <button type="button" class="btn btn-success" onclick="LoadEmployeeModalBody(0)">اضافه کردن کارمند</button>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <table class="table text-center table-bordered table-hover">
+                <caption>لیست کارمندان</caption>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">شماره پرسنلی</th>
+                        <th scope="col">نام </th>
+                        <th scope="col">نام خانوادگی</th>
+                        <th scope="col">کد ملی</th>
+                        <th scope="col">شماره تلفن</th>
+                        <th scope="col">تاریخ تولد</th>
+                        <th scope="col">تاریخ شروع به همکاری</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var employee in Model)
+                    {
+                        <tr id="Product-@employee.EmployeeId">
+                            <td>@employee.EmployeeId</td>
+                            <td>@employee.EmployeeName</td>
+                            <td>@employee.EmployeeFamily</td>
+                            <td>@employee.NationalCode</td>
+                            <td>@employee.PhoneNumber</td>
+                            <td>@(employee.EmployeeBirthday != DateOnly.MinValue ? employee.EmployeeBirthday.ToString("yyyy/MM/dd") : "")</td>
+                            <td>@(employee.StartWork != DateOnly.MinValue ? employee.StartWork.ToString("yyyy/MM/dd") : " ")</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm" onclick="LoadEmployeeModalBody('@employee.EmployeeId')">ویرایش</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="DeleteEmployee('@employee.EmployeeId')">حذف</button>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info w-100 text-center" role="alert">
+               کارمندی پیدا نشد
+            </div>
+        }
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="EmployeeModal" tabindex="-1" aria-labelledby="EmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="EmployeeModalContent">
+        </div>
+    </div>
+</div>

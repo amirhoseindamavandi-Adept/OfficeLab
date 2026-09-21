@@ -2,25 +2,29 @@
 {
     public class Employee
     {
-        public Employee(string employeeName, string employeeFamily, int nationalCode, int phoneNumber, DateTime employeeBirthday)
+        public Employee(string employeeName, string employeeFamily, int nationalCode, int phoneNumber, DateOnly employeeBirthday)
         {
             EmployeeName = employeeName;
             EmployeeFamily = employeeFamily;
             NationalCode = nationalCode;
             PhoneNumber = phoneNumber;
             EmployeeBirthday = employeeBirthday;
-            StartWork = DateTime.Now;
+            StartWork = DateOnly.FromDateTime(DateTime.Now);
             IsDeleted=false;
         }
 
-        public int EmployeeId { get; private set; }
-        public string EmployeeName { get; private set; }
-        public string EmployeeFamily { get; private set; }
-        public DateTime StartWork { get; private set; }
-        public bool IsDeleted { get; private set; }
-        public int NationalCode { get; private set; }
-        public int PhoneNumber { get; private set; }
-        public DateTime EmployeeBirthday { get; private set; }
+        public Employee()
+        {
+        }
+
+        public int EmployeeId { get;  set; }
+        public string EmployeeName { get;  set; }
+        public string EmployeeFamily { get;  set; }
+        public DateOnly StartWork { get;  set; }
+        public bool IsDeleted { get;  set; }
+        public int NationalCode { get;  set; }
+        public int PhoneNumber { get;  set; }
+        public DateOnly EmployeeBirthday { get;  set; }
 
     }
 }

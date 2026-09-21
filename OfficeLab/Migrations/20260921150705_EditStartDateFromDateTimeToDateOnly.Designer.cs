@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfficeLab.EFCoreDbContext;
 
@@ -11,9 +12,11 @@ using OfficeLab.EFCoreDbContext;
 namespace OfficeLab.Migrations
 {
     [DbContext(typeof(OfficeLabDbContext))]
-    partial class OfficeLabDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260921150705_EditStartDateFromDateTimeToDateOnly")]
+    partial class EditStartDateFromDateTimeToDateOnly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
